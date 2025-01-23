@@ -23,33 +23,15 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 """
 
-
 def romanToInt(s: str) -> int:
     roman_to_int = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
     number = 0
-    for letter in s:
-        
-        match letter:
-            case "I":
-                number += 1
-
-            case "V":
-                number += 5
-
-            case "X":
-                number += 10
-
-            case "L":
-                number += 50
-
-            case "C":
-                number += 100
-
-            case "D":
-                number += 500
-
-            case "M":
-                number += 1000
+    l = len(s)
+    for i in range(l):
+        if i < l - 1 and roman_to_int[s[i]] < roman_to_int[s[i+1]]:
+            number -= roman_to_int[s[i]]
+        else:
+            number += roman_to_int[s[i]]
     return number
 
 
